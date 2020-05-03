@@ -30,7 +30,19 @@ RUN AFL_USE_ASAN=1 afl-clang-fast ./harness_xml.c -I libxml2/include libxml2/.li
 # scarico libreria test
 RUN git clone https://github.com/dvyukov/go-fuzz-corpus.git /home/fuzzer/go-fuzz-corpus
 
+# libreria openssl
+WORKDIR /home/fuzzer/workshop/challenges/heartbleed/openssl/
+RUN CC=afl-clang-fast CXX=afl-clang-fast++ ./config -d
+RUN AFL_USE_ASAN=1 make
 
+# build handshake.cc
+WORKDIR /home/fuzzer/workshop/challenges/heartbleed/
+RUN AFL_USE_ASAN=1 afl-clang-fast++ -g handshake.cc openssl/libssl.a openssl/libcrypto.a -o handshake -I openssl/include -ldl
+
+
+
+# fine
+WORKDIR /home/fuzzer/workshop/challenges/
 # compilo libreria
 #WORKDIR workshop/challenges/libxml2/libxml2
 #RUN git clone https://gitlab.gnome.org/GNOME/libxml2.git .
