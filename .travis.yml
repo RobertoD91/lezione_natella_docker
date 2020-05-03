@@ -1,0 +1,21 @@
+language: bash
+
+os:
+  - linux
+  #- osx
+  #- windows
+
+dist: 
+  - bionic
+
+services:
+  - docker
+
+script:
+  - docker build -t robertod91/lezione_natella_fuzzing1:travis .
+  - docker run robertod91/lezione_natella_fuzzing1:travis whoami
+
+notifications:
+  email:
+    on_failure: change
+    on_success: never
