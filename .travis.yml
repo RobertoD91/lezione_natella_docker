@@ -1,4 +1,4 @@
-language: bash
+language: shell
 
 os:
   - linux
@@ -13,7 +13,7 @@ services:
 
 script:
   - docker build -t robertod91/lezione_natella_fuzzing1:travis .
-  - docker run robertod91/lezione_natella_fuzzing1:travis whoami
+  - docker run -t robertod91/lezione_natella_fuzzing1:travis whoami
 
 notifications:
   email:
