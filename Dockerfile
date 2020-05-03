@@ -37,6 +37,7 @@ RUN AFL_USE_ASAN=1 make
 
 # build handshake.cc
 WORKDIR /home/fuzzer/workshop/challenges/heartbleed/
+COPY handshake-soluzione-github.cc handshake.cc
 RUN AFL_USE_ASAN=1 afl-clang-fast++ -g handshake.cc openssl/libssl.a openssl/libcrypto.a -o handshake -I openssl/include -ldl
 
 
