@@ -22,6 +22,14 @@ RUN CC=afl-clang-fast ./autogen.sh
 RUN FL_USE_ASAN=1 make
 # valutare -j 4
 
+# compilo esempio harness
+WORKDIR /home/fuzzer/workshop/challenges/libxml2/
+COPY harness_xml.c .
+RUN AFL_USE_ASAN=1 afl-clang-fast ./harness_xml.c -I libxml2/include libxml2/.libs/libxml2.a -lz -lm -o harness_xml 
+
+# scarico libreria test
+RUN git clone https://github.com/dvyukov/go-fuzz-corpus.git /home/fuzzer/go-fuzz-corpus
+
 
 # compilo libreria
 #WORKDIR workshop/challenges/libxml2/libxml2
@@ -53,3 +61,9 @@ CMD ["bash"]
 #sudo /home/corso/SoftwareSecurity/afl/AFL/experimental/asan_cgroups/limit_memory.sh -u corso
 # DEVE ESSERE ESEGUITO CON PRIVILEGED
 # sudo /home/fuzzer/afl-2.52b/experimental/asan_cgroups/limit_memory.sh -u root -m 8000 afl-fuzz -i ~/go-fuzz-corpus/xml/corpus/ -o afl_libxml2 -m 1000 -- ./harness @@
+
+# note:
+# per libxml2: questo funziona alla prima botta:
+# afl-fuzz -m none -i ~/go-fuzz-corpus/xml/corpus/ -o out_risultati -x ~/afl-2.52b/dictionaries/xml.dict ./harness_xml @@
+# quello della lezione deve essere adattate
+# 
