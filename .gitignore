@@ -40,3 +40,12 @@ DerivedData/
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 # End of https://www.gitignore.io/api/xcode,docker
+
+
+esempio_build_libreria/*.o
+esempio_build_libreria/*.so
+esempio_build_libreria/a.out
+esempio_build_libreria/eseguibile
+esempio_build_libreria/libreria
+esempio_build_libreria/saluto
+
