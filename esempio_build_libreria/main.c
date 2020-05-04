@@ -1,9 +1,8 @@
 // main.c
 #include <stdio.h>
-#include "foo.h"
+#include "libreria.h"
  
-int main(void)
-{
+int main(void){
     puts("Ciao, sono il main di esempio!\n");
     saluta();
     return 0;

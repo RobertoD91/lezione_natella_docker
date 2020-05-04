@@ -1,0 +1,11 @@
+# compilo libreria
+gcc -c libreria.c -o saluto.o
+
+# compilo main
+gcc -c main.c -o main.o
+
+gcc main.o saluto.o -o eseguibile
+
+./eseguibile
+
+https://www.cprogramming.com/tutorial/shared-libraries-linux-gcc.html
