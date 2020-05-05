@@ -19,7 +19,7 @@ RUN git submodule update
 WORKDIR /home/fuzzer/workshop/challenges/libxml2/libxml2
 RUN ls -la
 RUN CC=afl-clang-fast ./autogen.sh
-RUN FL_USE_ASAN=1 make
+RUN AFL_USE_ASAN=1 make
 # valutare -j 4
 
 # compilo esempio harness
